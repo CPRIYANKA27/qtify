@@ -1,5 +1,5 @@
-import styles from "./hero.module.css";
-import heroImage from "../../assets/hero.svg";
+import styles from "../Hero/Hero.module.css";
+import heroImage from "../assets/hero_headphones.svg";
 
 const Hero = () => {
   return (

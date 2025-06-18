@@ -1,4 +1,4 @@
-import navbarStyles from "../Navbar/navbar.module.css";
+/*import navbarStyles from "../Navbar/Navbar.module.css";
 
 const Button = ({ text, eventHandler }) => {
   return (
@@ -13,6 +13,14 @@ const Button = ({ text, eventHandler }) => {
       </button>
     </div>
   );
+};
+
+export default Button;
+*/
+import styles from "../Button/Button.module.css";
+
+const Button = ({ text }) => {
+  return <button className={styles.button}>{text}</button>;
 };
 
 export default Button;

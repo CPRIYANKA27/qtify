@@ -1,0 +1,35 @@
+.feedback {
+  border: none;
+  height: 45px;
+  border-radius: 12px;
+  padding: 10px 16px;
+  background-color: var(--black-color);
+  color: var(--primary-color);
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+
+:root {
+  --qtify-green: #1dd75b; /* Use the exact green color from your Figma */
+  --qtify-black: #000000;
+}
+
+.button {
+  background-color: var(--qtify-black);
+  color: var(--qtify-green);
+  font-family: "Poppins", sans-serif;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  margin-right: 50px;
+}
+
+.button:hover {
+  opacity: 0.9;
+}

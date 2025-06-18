@@ -1,18 +1,15 @@
-import "./App.css";
-import AlbumSongsPage from "./components/Album Songs Page/AlbumSongsPage";
-import HomePage from "./components/Home Page/HomePage";
-import { Route, Routes } from "react-router-dom";
+import React from "react";
+import Navbar from "./Navbar/Navbar";
+import Hero from "./Hero/Hero";
 
-const App = () => {
+function App() {
   return (
-    <>
-      <Routes>
-        {" "}
-        <Route path="/" Component={HomePage} />{" "}
-        <Route path="/album/:title" Component={AlbumSongsPage} />{" "}
-      </Routes>{" "}
-    </>
+    <div>
+      <Navbar />
+      <Hero />
+      {/* other components */}
+    </div>
   );
-};
+}
 
 export default App;
