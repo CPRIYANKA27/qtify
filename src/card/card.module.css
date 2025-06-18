@@ -1,0 +1,30 @@
+.card {
+  width: 200px; /* or something fixed */
+  max-width: 100%;
+  overflow: hidden;
+  background-color: white;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.bottom {
+  padding: 8px;
+  background-color: white;
+  text-align: center;
+}
+
+.chip {
+  margin-bottom: 4px;
+  font-size: 12px;
+  background-color: black;
+  color: #00ff00; /* green from Figma */
+}
+
+.title {
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+}

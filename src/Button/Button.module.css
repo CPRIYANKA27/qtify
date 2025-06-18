@@ -27,7 +27,6 @@
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
-  margin-right: 50px;
 }
 
 .button:hover {
