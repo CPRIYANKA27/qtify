@@ -1,12 +1,11 @@
 .hero {
-  width: 100vw;
+  width: 97.5vw;
   height: 270px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: black;
+  background-color: var(--qtify-black);
   color: white;
-  gap: 30px;
 }
 
 .hero h1 {

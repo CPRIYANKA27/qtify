@@ -1,34 +1,75 @@
 .section {
-  margin: 0px 0;
-  background-color: black;
+  margin-bottom: 40px;
+  padding: 0 20px;
+  background-color: #121212;
 }
 
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
 }
 
-.title {
-  font-size: 24px;
-  color: white;
-  font-weight: 600;
-  font-family: "Poppins", sans-serif;
+.header h3 {
+  color: #ffffff;
+  font-size: 20px;
 }
 
-.button {
-  font-family: "Poppins", sans-serif;
-  color: #00ff00;
+.showAll {
   background: none;
   border: none;
+  color: #34c94b;
   font-weight: bold;
-  font-size: 16px;
   cursor: pointer;
 }
 
-.grid {
+.carouselContainer {
+  position: relative;
   display: flex;
-  flex-wrap: wrap;
+  align-items: center;
+}
+
+.carousel {
+  display: flex;
   gap: 16px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  padding: 10px 0;
+}
+
+.carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.arrow {
+  background-color: #34c94b;
+  border: none;
+  color: white;
+  font-size: 18px;
+  padding: 8px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.arrow:first-of-type {
+  margin-right: 8px;
+}
+
+.arrow:last-of-type {
+  margin-left: 8px;
+}
+
+@media (max-width: 1200px) {
+  .arrow {
+    display: flex;
+  }
+}
+
+@media (max-width: 768px) {
+  .arrow {
+    display: none;
+  }
 }

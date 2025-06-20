@@ -1,5 +1,6 @@
 body {
-  margin: 0;
+  margin: 0px;
+  padding: 0px;
   font-family: "Poppins", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -12,7 +13,4 @@ code {
 }
 :root {
   --qtify-green: #1dd75b;
-}
-* {
-  box-sizing: border-box;
 }
