@@ -1,10 +1,9 @@
 .hero {
-  width: 97.5vw;
   height: 270px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--qtify-black);
+  background-color: black;
   color: white;
 }
 
@@ -34,4 +33,10 @@
   .hero div {
     margin-left: 20px;
   }
+}
+.Hero_HeroTitle {
+  flex-direction: column;
+  font-weight: 600;
+  line-height: 48px;
+  margin: 20px;
 }
