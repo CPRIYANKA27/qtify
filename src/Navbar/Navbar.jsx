@@ -38,7 +38,7 @@ const Navbar = ({ data, page, songsData }) => {
         </div>
         <div className={styles.buttonWrapper}>
           <Button
-            text="GIVE FEEDBACK"
+            text="Give Feedback"
             eventHandler={{ event: "onClick", handler: handleClick }}
           />
         </div>
