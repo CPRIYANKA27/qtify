@@ -1,63 +1,124 @@
-import React, { useEffect, useState, useRef } from "react";
-import axios from "axios";
+import * as React from "react";
+import styles from "../Section/section.module.css";
+import "./material.css";
+import { useState } from "react";
 import Card from "../card/Card";
-import styles from "./section.module.css";
-import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import { Box, CircularProgress, Tabs, Tab } from "@mui/material";
+import Carousel from "../Carousel/Carousel";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
 
-const Section = ({ title, endpoint }) => {
-  const [albums, setAlbums] = useState([]);
-  const scrollRef = useRef(null);
+const Section = ({ title, data, type, genres }) => {
+  const theme = createTheme({
+    components: {
+      MuiTabs: {
+        styleOverrides: {
+          indicator: {
+            backgroundColor: "#34c94b",
+          },
+        },
+      },
+    },
+    palette: {
+      primary: {
+        main: "#ffffff",
+      },
+    },
+  });
 
-  useEffect(() => {
-    const fetchAlbums = async () => {
-      try {
-        const response = await axios.get(endpoint);
-        setAlbums(response.data);
-      } catch (error) {
-        console.error("Error fetching albums:", error);
-      }
-    };
+  const [toggle, setToggle] = useState(false);
+  const [value, setValue] = useState("all");
 
-    fetchAlbums();
-  }, [endpoint]);
+  const handleToggle = () => {
+    setToggle(!toggle);
+  };
 
-  const scroll = (direction) => {
-    if (scrollRef.current) {
-      const scrollAmount = 180 * 3.5; // Adjust to scroll ~3.5 cards per click
-      scrollRef.current.scrollBy({
-        left: direction === "left" ? -scrollAmount : scrollAmount,
-        behavior: "smooth",
-      });
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
+  const filterSongs = () => {
+    if (type === "songs" && value !== "all") {
+      return data?.filter((ele) => ele.genre.key === value);
     }
+    return data;
   };
 
   return (
-    <div className={styles.section}>
+    <div>
       <div className={styles.header}>
-        <h3>{title}</h3>
-        <button className={styles.showAll}>Show all</button>
+        <p>{title}</p>
+        <p className={styles.showAll} onClick={handleToggle}>
+          {toggle ? "Collapse" : "Show All"}
+        </p>
       </div>
 
-      <div className={styles.carouselContainer}>
-        <button className={styles.arrow} onClick={() => scroll("left")}>
-          <FaArrowLeft />
-        </button>
+      {type === "songs" && (
+        <ThemeProvider theme={theme}>
+          <Box sx={{ width: "100%", padding: "10px 20px" }}>
+            <Tabs
+              value={value}
+              onChange={handleChange}
+              textColor="primary"
+              aria-label="Genre Filter Tabs"
+            >
+              <Tab
+                value="all"
+                label="All"
+                key="all"
+                className={styles.genreTab}
+              />
+              {genres?.map((tab) => (
+                <Tab
+                  key={tab.key}
+                  value={tab.key}
+                  label={tab.label}
+                  className={styles.genreTab}
+                />
+              ))}
+            </Tabs>
+          </Box>
+        </ThemeProvider>
+      )}
 
-        <div className={styles.carousel} ref={scrollRef}>
-          {albums.map((album) => (
-            <Card
-              key={album.id}
-              image={album.image}
-              title={album.title}
-              follows={album.follows}
-            />
-          ))}
-        </div>
-
-        <button className={styles.arrow} onClick={() => scroll("right")}>
-          <FaArrowRight />
-        </button>
-      </div>
+      {!Array.isArray(data) || data.length === 0 ? (
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            margin: "10px",
+          }}
+        >
+          <CircularProgress color="success" />
+          <p style={{ marginLeft: "10px" }}>Loading...</p>
+        </Box>
+      ) : (
+        <>
+          <div className={styles.cardsWrapper}>
+            <div className={styles.wrapper}>
+              {toggle ? (
+                type === "songs" ? (
+                  filterSongs()?.map((card) => (
+                    <Card key={card.id} data={card} type={type} />
+                  ))
+                ) : (
+                  data.map((card) => (
+                    <Card key={card.id} data={card} type={type} />
+                  ))
+                )
+              ) : (
+                <Carousel
+                  data={type === "songs" ? filterSongs() : data}
+                  component={(card) => (
+                    <Card key={card.id} data={card} type={type} />
+                  )}
+                />
+              )}
+            </div>
+          </div>
+          {toggle && title === "Top Albums" && <hr />}
+        </>
+      )}
     </div>
   );
 };

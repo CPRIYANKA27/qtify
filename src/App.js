@@ -1,23 +1,18 @@
-import React from "react";
-import Navbar from "./Navbar/Navbar";
-import Hero from "./Hero/Hero";
+import "../src/App.css";
+import AlbumSongsPage from "../src/Album Songs Page/AlbumSongsPage";
+import HomePage from "../src/Home Page/HomePage";
+import { Route, Routes } from "react-router-dom";
 
-import Section from "../src/Section/Section";
-
-function App() {
+const App = () => {
   return (
-    <div>
-      <Navbar />
-      <Hero />
-      {/* Use Section and pass the required props */}
-      <Section
-        title="Top Albums"
-        endpoint="https://qtify-backend-labs.crio.do/albums/top"
-      />
-      {/* You can also render New Albums like this */}
-      {/* <Section title="New Albums" endpoint="https://qtify-backend-labs.crio.do/albums/new" /> */}
-    </div>
+    <>
+      <Routes>
+        {" "}
+        <Route path="/" Component={HomePage} />{" "}
+        <Route path="/album/:title" Component={AlbumSongsPage} />{" "}
+      </Routes>{" "}
+    </>
   );
-}
+};
 
 export default App;
